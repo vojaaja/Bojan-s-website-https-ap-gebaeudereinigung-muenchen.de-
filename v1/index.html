@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AP Gebäudereinigung — Professional Building Cleaning in Munich</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0F2438;
+    --ink-2:#16324A;
+    --steel:#3D6B8C;
+    --green:#2F8F45;
+    --green-2:#256F37;
+    --concrete:#E8E6E0;
+    --paper:#FAF9F5;
+    --white:#FFFFFF;
+    --charcoal:#1A1D1F;
+    --line: rgba(15,36,56,0.12);
+    --maxw: 1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'IBM Plex Sans', sans-serif;
+    color:var(--charcoal);
+    background:var(--paper);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Archivo', sans-serif;
+    color:var(--ink);
+    margin:0;
+    line-height:1.05;
+  }
+  a{ text-decoration:none; color:inherit; }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 32px; }
+  img.svg-icon{ display:block; }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,249,245,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:78px;
+  }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .brand img{ height:42px; width:auto; }
+  .brand span{
+    font-family:'Archivo', sans-serif;
+    font-weight:700;
+    font-size:16px;
+    color:var(--ink);
+    letter-spacing:0.2px;
+    line-height:1.15;
+  }
+  .brand small{ display:block; font-family:'IBM Plex Sans'; font-weight:400; font-size:11px; color:var(--steel); }
+  .navlinks{ display:flex; align-items:center; gap:36px; }
+  .navlinks a{
+    font-size:14.5px; font-weight:500; color:var(--ink-2);
+    position:relative; padding:6px 0;
+  }
+  .navlinks a:hover{ color:var(--green-2); }
+  .nav-right{ display:flex; align-items:center; gap:22px; }
+  .langtoggle{
+    display:flex; border:1px solid var(--line); border-radius:6px; overflow:hidden;
+    font-size:12.5px; font-weight:600;
+  }
+  .langtoggle span{ padding:6px 10px; color:var(--steel); cursor:default; }
+  .langtoggle span.active{ background:var(--ink); color:var(--white); }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:11px 20px; border-radius:4px;
+    font-weight:600; font-size:14px;
+    border:1.5px solid transparent;
+    cursor:pointer;
+  }
+  .btn-primary{ background:var(--green); color:var(--white); }
+  .btn-primary:hover{ background:var(--green-2); }
+  .btn-ghost{ border-color:var(--ink); color:var(--ink); background:transparent; }
+  .btn-ghost:hover{ background:var(--ink); color:var(--white); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .blueprint-grid{
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.05) 78%);
+    opacity:0.55;
+  }
+  .hero-inner{
+    position:relative;
+    display:grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap:40px;
+    padding:88px 0 56px;
+    align-items:end;
+  }
+  .hero-eyebrow-row{
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:22px;
+  }
+  .pin{ width:8px; height:8px; background:var(--green); border-radius:50%; flex:none; }
+  .hero-loc{ font-size:14px; color:var(--steel); font-weight:500; }
+  .hero h1{
+    font-size:56px; font-weight:800; letter-spacing:-0.5px;
+  }
+  .hero h1 .accent-underline{
+    display:inline;
+    background-image: linear-gradient(var(--concrete),var(--concrete));
+    background-repeat:no-repeat;
+    background-size:100% 10px;
+    background-position: 0 88%;
+  }
+  .hero p.lede{
+    margin-top:22px; font-size:18px; line-height:1.6; color:var(--ink-2);
+    max-width:520px;
+  }
+  .hero-ctas{ display:flex; gap:14px; margin-top:32px; }
+
+  .spec-card{
+    background:var(--ink);
+    color:var(--white);
+    border-radius:8px;
+    padding:30px 30px 26px;
+    align-self:stretch;
+    display:flex; flex-direction:column; justify-content:space-between;
+    position:relative;
+  }
+  .spec-card::before{
+    content:"";
+    position:absolute; top:0; left:0; right:0; height:4px;
+    background:linear-gradient(90deg, var(--green), var(--steel));
+    border-radius:8px 8px 0 0;
+  }
+  .spec-card h3{
+    color:var(--white); font-size:13px; letter-spacing:0.4px;
+    font-family:'IBM Plex Sans'; font-weight:600; opacity:0.65; margin-bottom:18px;
+  }
+  .spec-row{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding:13px 0; border-top:1px solid rgba(255,255,255,0.12);
+    font-size:14.5px;
+  }
+  .spec-row:first-of-type{ border-top:none; }
+  .spec-row b{ font-family:'Archivo'; font-weight:700; font-size:15.5px; }
+
+  /* ---------- STRIP ---------- */
+  .trust-strip{
+    background:var(--ink);
+    color:var(--white);
+  }
+  .trust-strip .wrap{
+    display:flex; justify-content:space-between;
+    padding:22px 32px;
+    flex-wrap:wrap; gap:18px 40px;
+  }
+  .trust-item{
+    display:flex; align-items:center; gap:10px;
+    font-size:14px; font-weight:500; color:rgba(255,255,255,0.88);
+  }
+  .trust-item .dot{ width:6px; height:6px; border-radius:50%; background:var(--green); flex:none; }
+
+  /* ---------- SECTION HEAD ---------- */
+  .section{ padding:96px 0; }
+  .section.alt{ background:var(--concrete); }
+  .section-head{
+    display:grid; grid-template-columns: 0.9fr 1.1fr; gap:60px;
+    margin-bottom:56px;
+    align-items:end;
+  }
+  .section-head h2{ font-size:36px; font-weight:800; letter-spacing:-0.3px; }
+  .section-head p{ font-size:16px; line-height:1.65; color:var(--ink-2); max-width:480px; }
+  .kicker{
+    font-size:13px; font-weight:600; color:var(--green-2);
+    margin-bottom:10px; display:block;
+  }
+
+  /* ---------- DIRECTORY (services) ---------- */
+  .directory{
+    border:1px solid var(--line);
+    border-radius:8px;
+    overflow:hidden;
+    background:var(--white);
+  }
+  .directory-row{
+    display:grid;
+    grid-template-columns: 90px 1.3fr 1.7fr 140px;
+    align-items:center;
+    padding:22px 28px;
+    border-bottom:1px solid var(--line);
+    transition:background 0.15s ease;
+  }
+  .directory-row:last-child{ border-bottom:none; }
+  .directory-row:hover{ background:var(--paper); }
+  .directory-row .lvl{
+    font-family:'Archivo'; font-weight:800; font-size:22px; color:var(--concrete-text, var(--steel));
+    color:var(--steel); opacity:0.55;
+  }
+  .directory-row .name{ font-family:'Archivo'; font-weight:700; font-size:16.5px; color:var(--ink); }
+  .directory-row .desc{ font-size:14.5px; color:var(--ink-2); line-height:1.5; padding-right:20px; }
+  .directory-row .tag{
+    justify-self:end;
+    font-size:11.5px; font-weight:600; color:var(--green-2);
+    background:rgba(47,143,69,0.1);
+    padding:5px 11px; border-radius:20px;
+    white-space:nowrap;
+  }
+  .directory-row.featured{ background:#F3F7F1; }
+  .directory-row.featured .name{ color:var(--green-2); }
+
+  /* ---------- WHY US ---------- */
+  .why-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:8px;
+    overflow:hidden;
+  }
+  .why-card{
+    background:var(--white);
+    padding:32px 26px;
+  }
+  .why-card .num{
+    font-family:'Archivo'; font-weight:800; font-size:13px; color:var(--green-2);
+    margin-bottom:16px; letter-spacing:0.5px;
+  }
+  .why-card h4{
+    font-family:'Archivo'; font-weight:700; font-size:16.5px; color:var(--ink);
+    margin-bottom:10px;
+  }
+  .why-card p{ font-size:14px; line-height:1.6; color:var(--ink-2); margin:0; }
+
+  /* ---------- CTA BANNER ---------- */
+  .cta-banner{
+    background:var(--ink);
+    border-radius:10px;
+    padding:56px 60px;
+    display:flex; justify-content:space-between; align-items:center;
+    gap:40px;
+    position:relative;
+    overflow:hidden;
+  }
+  .cta-banner::after{
+    content:"";
+    position:absolute; right:-60px; top:-60px; width:240px; height:240px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(47,143,69,0.35), transparent 70%);
+  }
+  .cta-banner h3{
+    color:var(--white); font-size:28px; font-weight:800; max-width:440px; position:relative;
+  }
+  .cta-banner p{ color:rgba(255,255,255,0.7); margin-top:10px; font-size:15px; position:relative; }
+  .cta-banner .btn-primary{ position:relative; white-space:nowrap; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background:var(--ink); color:rgba(255,255,255,0.75); padding:64px 0 28px; }
+  .foot-grid{
+    display:grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap:40px;
+    padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,0.12);
+  }
+  .foot-brand{ display:flex; align-items:center; gap:10px; margin-bottom:16px; }
+  .foot-brand img{ height:34px; }
+  .foot-brand span{ font-family:'Archivo'; font-weight:700; color:var(--white); font-size:15px; }
+  footer p{ font-size:14px; line-height:1.7; max-width:280px; }
+  footer h5{
+    color:var(--white); font-family:'IBM Plex Sans'; font-weight:600; font-size:13px;
+    letter-spacing:0.3px; margin-bottom:16px;
+  }
+  footer ul{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:11px; }
+  footer ul a{ font-size:14px; color:rgba(255,255,255,0.72); }
+  footer ul a:hover{ color:var(--white); }
+  .foot-bottom{
+    display:flex; justify-content:space-between; padding-top:24px; font-size:12.5px; color:rgba(255,255,255,0.45);
+  }
+
+  @media (max-width: 880px){
+    .hero-inner{ grid-template-columns:1fr; }
+    .section-head{ grid-template-columns:1fr; gap:20px; }
+    .why-grid{ grid-template-columns:1fr 1fr; }
+    .directory-row{ grid-template-columns: 50px 1fr; grid-template-areas: "lvl name" "desc desc" "tag tag"; row-gap:8px; }
+    .directory-row .desc{ grid-area:desc; padding-right:0; }
+    .directory-row .tag{ grid-area:tag; justify-self:start; }
+    .cta-banner{ flex-direction:column; align-items:flex-start; padding:40px 28px; }
+    .foot-grid{ grid-template-columns:1fr 1fr; }
+    .navlinks{ display:none; }
+    .hero h1{ font-size:38px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="#" class="brand">
+      <img src="assets/logo.png" alt="AP Gebäudereinigung logo">
+      <span>AP Gebäudereinigung<small>Building Cleaning · Munich</small></span>
+    </a>
+    <div class="navlinks">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#why">Why Us</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <div class="langtoggle"><span class="active">EN</span><span>DE</span></div>
+      <a href="#contact" class="btn btn-primary">Get a Quote</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="blueprint-grid"></div>
+  <div class="wrap hero-inner">
+    <div>
+      <div class="hero-eyebrow-row">
+        <span class="pin"></span>
+        <span class="hero-loc">Munich &amp; surrounding area</span>
+      </div>
+      <h1>Professional building<br>cleaning, <span class="accent-underline">done right.</span></h1>
+      <p class="lede">Reliable cleaning for offices, retail spaces, and industrial facilities — including large-scale machine cleaning scheduled around your operations, not the other way around.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-primary">Request a Free Quote</a>
+        <a href="#services" class="btn btn-ghost">View Services</a>
+      </div>
+    </div>
+    <div class="spec-card">
+      <h3>SERVICE OVERVIEW</h3>
+      <div>
+        <div class="spec-row"><span>Property types</span><b>Office · Retail · Industrial</b></div>
+        <div class="spec-row"><span>Scheduling</span><b>Weekday, weekend &amp; off-hours</b></div>
+        <div class="spec-row"><span>Coverage</span><b>Fully insured</b></div>
+        <div class="spec-row"><span>Based in</span><b>Munich, Germany</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trust-strip">
+  <div class="wrap">
+    <div class="trust-item"><span class="dot"></span>Experience with commercial &amp; industrial clients</div>
+    <div class="trust-item"><span class="dot"></span>Weekend &amp; off-hours scheduling available</div>
+    <div class="trust-item"><span class="dot"></span>Fully insured (Haftpflichtversicherung)</div>
+    <div class="trust-item"><span class="dot"></span>Flexible, tailored cleaning plans</div>
+  </div>
+</div>
+
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="kicker">WHAT WE DO</span>
+        <h2>Cleaning services, by facility area.</h2>
+      </div>
+      <p>From daily upkeep to intensive machine cleaning of large facilities, laid out like a building directory — find the service that fits your space.</p>
+    </div>
+
+    <div class="directory">
+      <div class="directory-row featured">
+        <div class="lvl">01</div>
+        <div class="name">Machine Deep Cleaning</div>
+        <div class="desc">Industrial floor cleaning and protective coating for warehouses, production sites, and large commercial spaces — including weekend work.</div>
+        <div class="tag">Large facilities</div>
+      </div>
+      <div class="directory-row">
+        <div class="lvl">02</div>
+        <div class="name">Building Cleaning</div>
+        <div class="desc">Thorough cleaning of office and commercial buildings, tailored to your facility's layout and schedule.</div>
+        <div class="tag">Offices &amp; commercial</div>
+      </div>
+      <div class="directory-row">
+        <div class="lvl">03</div>
+        <div class="name">Office Cleaning</div>
+        <div class="desc">Cleaning of workspaces, floors, kitchens, and restrooms to keep your office professional and hygienic.</div>
+        <div class="tag">Offices</div>
+      </div>
+      <div class="directory-row">
+        <div class="lvl">04</div>
+        <div class="name">Maintenance Cleaning</div>
+        <div class="desc">Regular cleaning on a custom-built schedule, adapted to your building's daily needs.</div>
+        <div class="tag">Recurring</div>
+      </div>
+      <div class="directory-row">
+        <div class="lvl">05</div>
+        <div class="name">Window Cleaning</div>
+        <div class="desc">Professional cleaning of windows and glass surfaces, inside and out.</div>
+        <div class="tag">Add-on</div>
+      </div>
+      <div class="directory-row">
+        <div class="lvl">06</div>
+        <div class="name">Post-Construction Cleaning</div>
+        <div class="desc">Thorough cleaning after renovation or construction work, leaving the space ready for use.</div>
+        <div class="tag">One-time</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="why">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="kicker">WHY AP GEBÄUDEREINIGUNG</span>
+        <h2>Built for buildings that can't stop running.</h2>
+      </div>
+      <p>Commercial and industrial clients need cleaning that fits around their operations — not the other way around.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="num">RELIABILITY</div>
+        <h4>We show up on schedule</h4>
+        <p>Every time, without exceptions — so your facility stays on track.</p>
+      </div>
+      <div class="why-card">
+        <div class="num">FLEXIBILITY</div>
+        <h4>Plans built around you</h4>
+        <p>Weekend and off-hours work available to avoid disrupting daily operations.</p>
+      </div>
+      <div class="why-card">
+        <div class="num">COVERAGE</div>
+        <h4>Fully insured</h4>
+        <p>Haftpflichtversicherung in place, so responsibility is never in question.</p>
+      </div>
+      <div class="why-card">
+        <div class="num">DETAIL</div>
+        <h4>Attention to every corner</h4>
+        <p>From floors to fixtures, nothing gets a quick pass.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="wrap" style="max-width:760px;">
+    <span class="kicker">ABOUT US</span>
+    <h2 style="font-size:32px; margin-bottom:22px;">Reliable cleaning, built on experience.</h2>
+    <p style="font-size:16.5px; line-height:1.75; color:var(--ink-2); margin-bottom:16px;">AP Gebäudereinigung is a Munich-based cleaning company providing professional building maintenance for businesses, property managers, and private clients across the city and surrounding areas.</p>
+    <p style="font-size:16.5px; line-height:1.75; color:var(--ink-2);">We specialize in thorough, dependable cleaning — from daily office upkeep to large-scale machine cleaning of industrial and commercial facilities. Whether it's a single office or a large industrial site, we tailor our approach to fit the specific needs of each building.</p>
+  </div>
+</section>
+
+<section class="section alt" id="contact">
+  <div class="wrap">
+    <div class="cta-banner">
+      <div>
+        <h3>Ready to get your facility cleaned right?</h3>
+        <p>Contact us for a free, no-obligation quote tailored to your building.</p>
+      </div>
+      <a href="mailto:ap.gebaudereinigungmunich@gmail.com" class="btn btn-primary">Request a Quote</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <img src="assets/logo.png" alt="">
+          <span>AP Gebäudereinigung</span>
+        </div>
+        <p>Professional building cleaning for offices, retail, and industrial facilities in Munich and the surrounding area.</p>
+      </div>
+      <div>
+        <h5>COMPANY</h5>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>CONTACT</h5>
+        <ul>
+          <li>Margaretenplatz 7c, 81373 München</li>
+          <li>0176 2413 5590</li>
+          <li>ap.gebaudereinigungmunich@gmail.com</li>
+        </ul>
+      </div>
+      <div>
+        <h5>LEGAL</h5>
+        <ul>
+          <li><a href="#">Impressum</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 AP Gebäudereinigung</span>
+      <span>Munich, Germany</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
